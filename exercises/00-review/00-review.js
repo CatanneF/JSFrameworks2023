@@ -34,6 +34,7 @@ const greet = (name) => {
 
 const highestNumber = (array) => {
   // Write your answer here
+  return Math.max(...array);
 };
 
 /**
@@ -47,6 +48,7 @@ const highestNumber = (array) => {
 
 const combineArray = (array1, array2) => {
   // Write your answer here
+  return[...array1,...array2];
 };
 
 /**
@@ -58,6 +60,7 @@ const combineArray = (array1, array2) => {
 
 const combineObject = (obj1, obj2) => {
   // Write your answer here
+  return {...obj1, ...obj2};
 };
 
 /**
@@ -69,6 +72,9 @@ const combineObject = (obj1, obj2) => {
 
 const doubleValues = (arr) => {
   // Write your answer here
+   return arr.map((num) => {
+    return num * 2;
+  });
 };
 
 /**
@@ -82,6 +88,9 @@ const doubleValues = (arr) => {
  */
 const onlyEvenValues = (arr) => {
   // Write your answer here
+  return arr.filter((num) => {
+     return num % 2 === 0;
+  });
 };
 
 /**
@@ -104,7 +113,13 @@ const onlyEvenValues = (arr) => {
  */
 const removeVowels = (str) => {
   // Write your answer here
-};
+  return str
+    .toLowerCase()
+    .split("")
+    .filter((letter) => !["a", "e", "i", "o", "u"].includes(letter))
+    .join("")
+
+  };
 
 /**
  * Solve this problem using the ternary operator.
@@ -124,6 +139,7 @@ const getIsHungryText = () => {
   //   isHungry = "Keep coding!";
   // }
 
+  let isHungry = isStomachEmpty ? "Go eat something." : "Keep coding!";
   return isHungry;
 };
 
@@ -160,6 +176,10 @@ const getTempOfTomorrow = () => {
  */
 const addItems = (arr) => {
   // Write your answer here
+  return arr.reduce((a, b) => {
+    return a + b
+  });
+
 };
 
 /**
@@ -175,6 +195,7 @@ const addItems = (arr) => {
 
 const removeDuplicates = (array) => {
   // Write your answer here
+  return [...new Set(array)];
   // Return an array of unique values
 };
 
