@@ -16,16 +16,7 @@ const Cats = () => {
       <ul className="list-unstyled">
         {catLinkImages.map((cat) => (
           <li key={cat} className="d-inline">
-<<<<<<< HEAD
             <img src={cat} alt={"pictures of cats"} width="200" className="img-fluid img-thumbnail"/>
-=======
-            <img
-              src={cat}
-              alt={"pictures of cats"}
-              width="200"
-              className="img-fluid img-thumbnail"
-            />
->>>>>>> 94a6bad2eeec12d558add2b2607981eed1deb495
           </li>
         ))}
       </ul>
