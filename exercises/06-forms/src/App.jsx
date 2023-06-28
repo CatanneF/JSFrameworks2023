@@ -1,9 +1,31 @@
 import "./App.css";
+import { useState } from 'react';
+
+const states = require("./assets/states.json")
+const countries = require("./assets/countries.json")
+
+
+
+        
 // Import here
 
 function App() {
+  const [firstName, setFirstname] = useState("");
+  const [lastName, setLastname] = useState("");
+  const [address, setAddress] = useState("");
+  const [city, setCity] = useState("");
+  const [region, setRegion] = useState("");
+  const [zip, setZip] = useState("");
+  const [userCountry, setUserCountry] = useState("");
+  const [signup, setSignup] = useState("Please sign up for our newsletter!");
+  const [displayResult, setDisplayResult] = useState(false)
+  const handleSubmit = e => {
+    e.preventDefault();
+    setDisplayResult(true);
+  }
+
   return (
-    <form className="container mt-4" method="POST">
+    <form className="container mt-4" method="POST" onSubmit={(handleSubmit)}>
       {/* You will need to handle form submission */}
       <div className="mb-3">
         <label htmlFor="firstName" className="control-label">
@@ -14,6 +36,9 @@ function App() {
           name="firstName"
           type="text"
           className="form-control"
+          value={firstName}
+          onChange={e => setFirstname(e.target.value)}
+          required
         />
       </div>
       <div className="mb-3">
@@ -25,6 +50,9 @@ function App() {
           name="lastName"
           type="text"
           className="form-control"
+          value={lastName}
+          onChange={e => setLastname(e.target.value)}
+          required
         />
       </div>
       <div className="mb-3">
@@ -36,6 +64,9 @@ function App() {
           name="addressLine1"
           type="text"
           className="form-control"
+          value={address}
+          onChange={e => setAddress(e.target.value)}
+          required
         />
         <p className="help-block text-muted">
           Street Address, P.O. Box, Company Name, C/O
@@ -46,15 +77,35 @@ function App() {
         <label htmlFor="city" className="control-label">
           City / Town
         </label>
-        <input id="city" name="city" type="text" className="form-control" />
+        <input 
+          id="city" 
+          name="city" 
+          type="text" 
+          className="form-control" 
+          value={city}
+          onChange={e => setCity(e.target.value)}
+          required
+        />
       </div>
       <div className="mb-3">
         <label htmlFor="state" className="control-label">
           State / Province / Region
         </label>
-        {/* Loop through the states you imported here */}
-        <select id="state" name="state" className="form-control" />
+        <select 
+          id="state" 
+          name="state" 
+          className="form-control"
+          value={region}
+          onChange={e => setRegion(e.target.value)}
+          required
+        >
+          {states.map((state) => (
+              <option value={state}>{state}</option>
+            ))};
+            
+          </select>
       </div>
+      
 
       <div className="mb-3">
         <label htmlFor="postalCode" className="control-label">
@@ -65,6 +116,9 @@ function App() {
           name="postalCode"
           type="text"
           className="form-control"
+          value={zip}
+          onChange={e => setZip(e.target.value)}
+          required
         />
       </div>
 
@@ -73,7 +127,11 @@ function App() {
           Country
         </label>
         {/* Loop through the countries you imported here */}
-        <select id="country" name="country" className="form-control" />
+        <select id="country" name="country" className="form-control" value={userCountry} onChange={e => setUserCountry(e.target.value)} required>
+        {countries.map((country) => (
+              <option value={country}>{country}</option>
+            ))};
+          </select>
       </div>
       <div className="mb-3 form-check">
         <input
@@ -81,6 +139,9 @@ function App() {
           name="signUpForNewsLetter"
           type="checkbox"
           className="form-check-input"
+          value={signup}
+          onChange={e => setSignup("Thank you for signing up for our newsletter!")}
+          
         />
         <label htmlFor="signUpForNewsLetter" className="form-check-label">
           Sign Up For Newsletter
@@ -94,11 +155,16 @@ function App() {
        * Find a way to only display this once the form has been submitted.
        * Hint: You will need to change "false" below with something else
        */}
-      {false && (
+      {displayResult && (
         <div className="card card-body bg-light mt-4 mb-4">
           Results:
           <ul className="list-unstyled mb-0">
             {/* Add <li></li> tags here */}
+              <li>{firstName} {lastName}</li>
+              <li>{address}</li>
+              <li>{city}, {region} {zip}</li>
+              <li>{userCountry}</li>
+              <li>{signup}</li>    
           </ul>
         </div>
       )}
