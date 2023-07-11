@@ -3,6 +3,8 @@ import "./App.css";
 import LessText from "./components/LessText/LessText"
 import ConvertTemp from "./components/LessText/ConvertTemp";
 import CharacterCounter from "./components/CharacterCount/CharacterCount";
+import GuessTheNumber from "./components/GuessTheNumber/GuessTheNumber";
+
 
 // Import CharacterCount here
 
@@ -34,6 +36,8 @@ function App() {
       <div className="container">
         <h1 className="h3">Challenge 3 - Guessing The Number</h1>
         {/* Add GuessingTheNumber here */}
+        <GuessTheNumber />
+        
       </div>
     </>
   );

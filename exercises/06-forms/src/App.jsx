@@ -3,9 +3,6 @@ import { useState } from 'react';
 
 const states = require("./assets/states.json")
 const countries = require("./assets/countries.json")
-
-
-
         
 // Import here
 
@@ -18,6 +15,7 @@ function App() {
   const [zip, setZip] = useState("");
   const [userCountry, setUserCountry] = useState("");
   const [signup, setSignup] = useState("Please sign up for our newsletter!");
+
   const [displayResult, setDisplayResult] = useState(false)
   const handleSubmit = e => {
     e.preventDefault();
@@ -104,7 +102,7 @@ function App() {
             ))};
             
           </select>
-      </div>
+      </div> onSubmit
       
 
       <div className="mb-3">

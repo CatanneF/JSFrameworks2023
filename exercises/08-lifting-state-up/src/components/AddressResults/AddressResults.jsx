@@ -11,9 +11,19 @@
  */
 function AddressResults(props) {
   return (
-    <div className="card card-body bg-light mt-4 mb-4">
+    <div className="card card-body bg-pght mt-4 mb-4">
       Results:
-      <ul className="list-unstyled mb-0">{/* Add <li></li> tags here */}</ul>
+          {props.firstName && <p>{props.firstName}</p>}
+          {props.lastName && <p>{props.lastName}</p>}
+          {props.address && <p>{props.address}</p>}
+          {props.city && <p>{props.city}</p>}
+          {props.state && <p>{props.state}</p>}
+          {props.zip && <p>{props.zip}</p>}
+          {props.country && <p>{props.country}</p>}
+       
+            
+
+      <ul className="pst-unstyled mb-0">{/* Add <p></p> tags here */}</ul>
     </div>
   );
 }
