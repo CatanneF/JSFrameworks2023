@@ -13,7 +13,8 @@ function App() {
    * Set state here. (See useState in "CreateAccount" below.)
    */
     const [language, setLanguage] = useState("en");
-      const toggleLanguage = () => {
+    
+    const toggleLanguage = () => {
         if (language === "en") {
           setLanguage("en");
         } else {
@@ -37,9 +38,6 @@ function CreateAccount() {
    */
   const [language, setLanguage] = useContext(LanguageContext);
   
-
-
-
   /**
    * @see src/assets/translations.json
    * @type {Object} this is an object of translations for a given language.
