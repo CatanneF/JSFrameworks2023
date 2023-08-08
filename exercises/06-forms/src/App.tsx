@@ -1,8 +1,9 @@
 import "./App.css";
 import { useState } from 'react';
+import { ReactNode, FormEvent } from "react";
 
-const states = require("./assets/states.json")
-const countries = require("./assets/countries.json")
+import { states } from "./assets/states";
+import { countries } from "./assets/countries";
         
 // Import here
 
@@ -17,13 +18,14 @@ function App() {
   const [signup, setSignup] = useState("Please sign up for our newsletter!");
 
   const [displayResult, setDisplayResult] = useState(false)
-  const handleSubmit = e => {
+
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     setDisplayResult(true);
   }
 
   return (
-    <form className="container mt-4" method="POST" onSubmit={(handleSubmit)}>
+    <form className="container mt-4" method="POST" onSubmit={handleSubmit}>
       {/* You will need to handle form submission */}
       <div className="mb-3">
         <label htmlFor="firstName" className="control-label">
@@ -97,7 +99,7 @@ function App() {
           onChange={e => setRegion(e.target.value)}
           required
         >
-          {states.map((state) => (
+          {states.map((state: string) => (
               <option value={state}>{state}</option>
             ))};
             
@@ -126,7 +128,7 @@ function App() {
         </label>
         {/* Loop through the countries you imported here */}
         <select id="country" name="country" className="form-control" value={userCountry} onChange={e => setUserCountry(e.target.value)} required>
-        {countries.map((country) => (
+        {countries.map((country: string) => (
               <option value={country}>{country}</option>
             ))};
           </select>

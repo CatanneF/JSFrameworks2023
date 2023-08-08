@@ -1,4 +1,4 @@
-[
+export const states = [
   "AL",
   "AK",
   "AS",
@@ -59,3 +59,5 @@
   "WI",
   "WY"
 ]
+
+export {}
