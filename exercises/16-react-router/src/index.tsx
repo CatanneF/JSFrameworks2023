@@ -1,4 +1,5 @@
 import React from "react";
+import { BrowserRouter } from "react-router-dom";
 import { createRoot } from "react-dom/client";
 import App from "./components/App/App";
 // Import something here
@@ -11,6 +12,8 @@ const root = createRoot(rootElement);
 root.render(
   // Add something here
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>  
   </React.StrictMode>
 );

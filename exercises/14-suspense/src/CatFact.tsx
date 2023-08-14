@@ -28,10 +28,10 @@ function CatFact() {
   //       setIsLoading(false);
   //     })
 
-  // const fetcher = (url) => axios(url).then((res) => res.data.fact);
+  const fetcher = (url: string) => axios(url).then((res) => res.data.fact);
 
-  const fetchCatFacts = (...args) =>
-    axios(...args).then((response) => response.data);
+  // const fetchCatFacts = (...args) =>
+  //   axios(...args).then((response) => response.data);
 
       // Will this catch block be needed anymore?
       // .catch((err) => {
@@ -54,12 +54,12 @@ function CatFact() {
  
 
   function getCatFact() {
-    const { data } = useSWR("https://catfact.ninja/fact", fetchCatFacts, {
+    const { data } = useSWR<string>("https://catfact.ninja/fact", fetchCatFacts, {
       suspense: true,
       refreshInterval: 0
     });
     return (
-      <p>{data.fact}</p>
+      <blockquote>{data}</blockquote>
     )
   }
   
