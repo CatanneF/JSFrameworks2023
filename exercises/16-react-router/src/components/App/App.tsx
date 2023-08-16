@@ -31,8 +31,9 @@ function App() {
       </div>
       <main className="container mb-4">
         <Routes>
-          <Route path="/Home" element={<Home />} />
-          <Route path="/category/:category" element={<Category />} />
+          <Route path="/category/:category" element={<Category />} />     
+          <Route path="/" element={<Home />} />
+          
         </Routes>
       </main>
     </>

@@ -20,17 +20,15 @@ function Category() {
    * This is the only part you will need to change in this file.
    */
 
- type Categories = {
-  category?: string;
- }
 
-  const { category } = useParams<Categories>(); // change me
+
+  const { category } = useParams(); // change me
   /**
    * You will need to some kind of check to make sure the product exists.
    * If it doesn't, display an error message.
    */
 
-  if (!category.hasOwnProperty(category)) {
+  if (!category || !inventory.hasOwnProperty(category)) {
     return <NotFound />;
   };
 
