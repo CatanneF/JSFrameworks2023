@@ -60,7 +60,7 @@ Import and your render you `<Heading />` component in `<App />` like this:
 - I should create a component called `<Heading />` that renders children props to the screen.
 - The `<App />` component should use the `<Heading />` component to render the text "Welcome to my React App!" to the screen.
 
-- Projects: [First Project](projects/retro-board/README.md)
+- Projects: [First Project](projects/retro-board/README.md) | [Final Project](projects/final-project/README.md)
 - [Code Sandboxes](https://codesandbox.io/u/matinaspatsos/sandboxes)
 - Installation Guide: [Mac](docs/InstallationGuideMac.md) | [Windows](docs/InstallationGuideWindows.md) | [Linux](docs/InstallationGuideLinuxAndNVM.md)
 - React: [Beginner's Code](https://www.freecodecamp.org/news/react-beginners-guide/) | [Manual](https://reactjs.org/) | [Create React App](https://create-react-app.dev/)
