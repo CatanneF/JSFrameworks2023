@@ -3,37 +3,43 @@ import "./App.css";
 
 const GroceryList = () => {
 
-  const [groceryItems, setGroceryItems] = useState([]);
+  const [groceryList, setGroceryList] = useState([]);
   const [item, setItem] = useState("");
   const [cost, setCost] = useState("");
+  const [hasError, setHasError] = useState(false);
+
+  const addToList = () => {
+    setGroceryList([...groceryList, {item, cost: parseFloat(cost)},
+    ])
+    setItem("")
+    setCost("")
+  };
+
+  const deleteItem = (indexToDelete) => {
+      setGroceryList(
+        [...groceryList].filter((_, index) => index !== indexToDelete)
+      );
+  };  
+  
+  const clearList = () => {
+    setGroceryList([])
+  };
+
+  const totalCost = () => {
+    return groceryList.reduce((total, item) => {
+      return total + item.cost;
+    }, 0);     
+  };
+
     
-    const handleSubmit = e => {
-      e.preventDefault(); 
 
-      const row = {item: item, cost: cost};
-      const newGroceryList = [...groceryItems, row];
-      setGroceryItems(newGroceryList);
-    }
-
-    //const deleteItem = (index) => {
-      //groceryItems = groceryItems.filter(
-      //  (item, cost, currentIndex) => currentIndex !== index)
-      // };
-
-      let totalCost = () => {
-        
-      };
-
-      const clearList = () => {
-          setGroceryItems([])
-      }
-
-      const deleteItem = (index) => {
-        const newList = groceryItems.filter((row, index) => {
-
-        })
-
-      }
+  const handleSubmit = e => {
+    e.preventDefault(); 
+    if (item && (cost || cost === 0)) {
+      addToList();
+      setHasError(false);
+    } else setHasError(true);
+  }; 
 
 
   return (
@@ -42,25 +48,37 @@ const GroceryList = () => {
         <form method="POST" className="row g-3" onSubmit={handleSubmit}>
           <div className="col">
             <input
-              className="form-control"
+              className={
+                hasError && !item ? "is-invalid form-control" : "form-control"
+              }
               type="text"
               placeholder="Name of grocery item..."
               aria-label="Name of grocery item..."
               value={item}
               onChange={(e) => setItem(e.target.value)}
             />
+            {hasError && !item && (
+              <div className="invalid-feedback">
+                Please enter a grocery item
+              </div>
+            )}
           </div>
           <div className="col">
             <input
-              className="form-control"
+              className={
+                hasError && !cost ? "is-invalid form-control" : "form-control"
+              }
               type="number"
               min="0"
               step=".01"
               placeholder="Cost of grocery item..."
               aria-label="Cost of grocery item..."
               value={cost}
-              onChange={(e) => setCost((e.target.value))}
+              onChange={(e) => setCost(parseFloat(e.target.value))}
             />
+            {hasError && !cost && (
+              <div className="invalid-feedback">Please enter the cost</div>
+            )}
           </div>
           <div className="col-md-auto">
             <button type="submit" className="btn btn-success">
@@ -81,36 +99,39 @@ const GroceryList = () => {
           </thead>
           <tbody>
           
-            {groceryItems.map((row, index) => {
+            {groceryList.map((row, index) => {
               return (
-                
-                    <div className="grocery-list-item" key={`row-${index}`}>
-                      <tr>
+                  <tr key={`item-${index}`}>
                     <td>{row.item}</td>
-                    <td>${row.cost}</td>
+                    <td>${row.cost.toFixed(2)}</td>
                     <td>
-                      <button aria-label="Delete" title="Delete" onClick={deleteItem(index)}>
+                      <button 
+                        aria-label="Delete" 
+                        title="Delete" 
+                        className="btn"
+                        onClick={deleteItem(index)}>
                         &times;
                       </button>
                     </td>
-                  </tr>
-                    </div>
-              )} 
+                  </tr>             
               )
-            }
+            })};
           </tbody>
         </table>
         <p className="lead">
-          <strong>Total Cost: {/* Complete me */}</strong>
+          <strong>Total Cost: ${totalCost().toFixed(2)}</strong>
         </p>
         <div className="d-flex justify-content-end">
-          <button type="button" className="btn btn-outline-success" onClick={clearList}>
+          <button 
+            type="button" 
+            className="btn btn-outline-success" 
+            onClick={clearList}>
             Clear
           </button>
         </div>
       </div>
     </div>
-  );
+  )
 };
 
 export default GroceryList;

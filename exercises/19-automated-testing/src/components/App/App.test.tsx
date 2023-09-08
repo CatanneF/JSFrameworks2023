@@ -46,11 +46,23 @@ it('should include a textbox called "Link" and the user can type in this textbox
  * @see https://testing-library.com/docs/queries/about
  */
 
+it('should render a heading for the links list', () => {
+  render(<App />);
+  screen.getByText("Here are my favorite sites:")
+})
+
 /**
  * Write a test that checks to see if two buttons renders on the screen
  * @see https://testing-library.com/docs/dom-testing-library/cheatsheet
  * @see https://jestjs.io/docs/expect#tohavelengthnumber
  */
+
+it('should render two different buttons', () => {
+  render(<App />);
+  const buttons = screen.findAllByRole('button');
+  expect(buttons).toHaveLength(2);
+
+})
 
 /**
  * Write a test to see if there a textbox called "Link Title" and test that the user can type in this textbox
@@ -83,4 +95,13 @@ it.skip("should add the user input to the new link on the screen when the add bu
    * @see https://testing-library.com/docs/dom-testing-library/api-events#fireeventeventname
    * @see https://testing-library.com/docs/dom-testing-library/api-events
    */
+  render(<App />);
+  // const linkTitle = screen.getByLabelText("Link Title");
+  // fireEvent.change(linkTitle, {
+  //   target: {value: ""};
+  // });
+
+  // const linkBtn = screen.getByText("Add Link");
+  // fireEvent.click(button)
+
 });

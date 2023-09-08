@@ -7,9 +7,7 @@ const AccordionSection = (props) => {
         {props.title}
       </div>
       <div className={props.isOpen ? "content active" : "content"}>
-        <p
-          className={props.isOpen ? "transition visible" : "transition hidden"}
-        >
+        <p className={props.isOpen ? "transition visible" : "transition hidden"}>
           {props.paragraph}
         </p>
       </div>

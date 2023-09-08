@@ -19,6 +19,14 @@ describe("Unit Testing", () => {
    * Write a unit test for `subtract` here.
    * @see https://jestjs.io/docs/using-matchers
    */
+  
+    describe("subtract", () => {
+      test("should subtract the second number from the first", () => {
+        const difference = subtract(7, 3);
+        expect(difference).toBe(4);
+      }) 
+    })
+
 
   /**
    * Write two tests for `isEvenNumber` here:
@@ -27,24 +35,36 @@ describe("Unit Testing", () => {
    * @see https://jestjs.io/docs/using-matchers
    */
 
+  describe("isEvenNumber", () => {
+    test("should tell if number is even or odd", () => {
+      const even = isEvenNumber(4);
+      expect(even).toBeTruthy();
+      const odd = isEvenNumber(3);
+      expect(odd).toBeFalsy();
+    })
+  })
+
   describe("findAdults", () => {
     // Remove the `.skip` when you are ready to write this test
-    test.skip("should find, in a multidimensional array, all the people older than 18", () => {
+    test("should find, in a multidimensional array, all the people older than 18", () => {
       /**
-       * Complete the unit test for `findAdults` here.
+       * Complete the unit test for `findAdults` here.      
        * Hint: You should not use `.toBe()` for this
        * @see https://jestjs.io/docs/using-matchers
        * @see https://jestjs.io/docs/expect
        */
+
       const people = [
         { name: "Janet", age: 43 },
         { name: "Aiden", age: 10 },
         { name: "Chloe", age: 16 },
       ];
+      const adults = findAdults(people);
+      expect(adults).toEqual([{"age": 43, "name": "Janet"}]);
     });
 
     // Remove the `.skip` when you are ready to write this test
-    test.skip("should return an empty array if no adults are found", () => {
+    test("should return an empty array if no adults are found", () => {
       /**
        * Complete the unit test for `findAdults` here, where you use a different assertion than `.toBe()`
        * @see https://jestjs.io/docs/using-matchers
@@ -55,6 +75,8 @@ describe("Unit Testing", () => {
         { name: "Emma", age: 17 },
         { name: "Ethan", age: 8 },
       ];
+      const adults = findAdults(people);
+      expect(adults).toEqual([]);
     });
   });
 });

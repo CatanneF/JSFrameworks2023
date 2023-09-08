@@ -1,36 +1,48 @@
 import { useState } from 'react'; 
 
+const getRandomNumber = () => Math.floor(Math.random() * 10) + 1;
+
 const GuessTheNumber = () => {
     const [guess, setGuess] = useState(0);
     const [text, setText] = useState("")
-    const [answer, setAnswer] = useState(35)
+    const [answer, setAnswer] = useState(getRandomNumber());
 
-    const checkGuess = (guess) => {
-        if (guess === answer) {
-            setText("Congrats, you guessed correctly");
+    const checkGuess = () => {
+        if (guess === "") {
+            setText("Please enter a number!");
+            return;
+          }
+      
+        const intUserGuess = parseInt(guess, 10);
+
+        if (intUserGuess > answer) {
+            setText(`Your guess is too high The correct number was ${answer}`);
             resetGame()
-        } else if (guess > answer) {
-            setText("Your guess is too high")
+        } else if (intUserGuess < answer) {
+            setText(`Your guess is too low The correct number was ${answer}`)
         } else {
-            setText("Your guess is too low")
+            setText("Congrats, you guessed correctly")
         }
     }
     const resetGame = () => {
-        setAnswer(Math.floor(Math.random() * 999))
-        console.log(answer)
+        setGuess("");
+        setText("");
+        setAnswer(getRandomNumber())
     }
     
     return (
         <>
-            <form action="">
+            <div action="">
                 <input 
-                    type="text"
+                    type="number"
+                    value={guess}
                     onChange={(e) => setGuess(e.target.value)}
                 />
                 <button onClick={checkGuess}>Guess</button>
+                <p>{text}</p>
                 <button onClick={resetGame}>Reset Game</button>
-            </form>
-            <p>{text} {guess} {answer}</p>
+            </div>
+            
         </>
     )
  
