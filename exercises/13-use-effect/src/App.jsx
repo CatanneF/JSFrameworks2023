@@ -8,11 +8,16 @@ function App() {
   /**
    * Set up state and make AJAX requests here
    */
+  
+  const [characterNames, setCharacterNames] = useState([])
+  const [image, setImage] = useState(
+    "https://i.ytimg.com/vi/UFFi9PWKDjg/maxresdefault.jpg"
+  );
   const [character, setCharacter] = useState("")
 
   const [isLoading, setIsLoading] = useState(true)
   const [hasError, setHasError] = useState("")
-  const [characterNames, setCharacterNames] = useState([])
+  
 
  
   
@@ -23,6 +28,7 @@ function App() {
     axios("https://rickandmortyapi.com/api/character")
     .then(response => {
       setCharacterNames(response.data.results)
+      fetchCharacterPage();
     })
     .catch(() => {
       setHasError(true)

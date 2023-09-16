@@ -21,8 +21,7 @@ function App() {
   /**
    * You may need to set something else in state
    */
-  {const [isLoading, setIsLoading] = useState(true)
-  const [hasError, setHasError] = useState("")}
+  
   const [numberOfImages, setNumberOfImages] = useState("1");
  
 
@@ -31,18 +30,11 @@ function App() {
    */
 
  useEffect(() => {
-  setIsLoading(true);
   const getUrl = `https://dog.ceo/api/breeds/image/random/${numberOfImages}`
   axios(getUrl)
   .then(response => {
     setDogImages(response.data.message)
   })
-  .catch(() => {
-    setHasError(true)
-  })
-  .then(() => {
-    setIsLoading(false)
-  });
  }, [numberOfImages])
 
 
@@ -64,10 +56,6 @@ function App() {
         <option value="10">10</option>
       </select>
       <div className="container">
-        {isLoading && <p>Loading...</p>}
-        {hasError && (
-          <div className="error" role="alert">Sorry, an error has occured</div>
-        )}
         {dogImages.map((dogImage, idx) => {
           return <img key={`dog-${idx}`} height="200" src={dogImage} />;
         })}

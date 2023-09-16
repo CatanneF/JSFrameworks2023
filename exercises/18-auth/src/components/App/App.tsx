@@ -1,4 +1,4 @@
-import { useState, ChangeEvent, useEffect } from "react";
+import { useState, ChangeEvent, useEffect, FormEvent } from "react";
 // import something here
 // import Axios (or use Fetch)
 import Home from "../Home/Home";
@@ -35,8 +35,8 @@ function App() {
           "Content-Type": "application/json",
         },
         data: {
-          username: "username",
-          password: "password",
+          username,
+          password
         },
       })
       setToken(data.data.token)
@@ -51,7 +51,7 @@ function App() {
   });
 }
 
-   const handleSubmit = (e) => {
+   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     login();
    };

@@ -20,6 +20,11 @@ function AddressResults(props) {
           {props.state && <p>{props.state}</p>}
           {props.zip && <p>{props.zip}</p>}
           {props.country && <p>{props.country}</p>}
+          {props.checkbox
+            ? "Thank you for signing up for our newsletter!"
+            : "Please sign up for our newsletter!"
+          }
+
        
             
 

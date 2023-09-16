@@ -1,7 +1,11 @@
-import { useState, useEffect } from "react";
 import axios from "axios";
 // Import something here
 import useSWR from "swr";
+
+type FetcherResponse = {
+  fact: string
+};
+const fetcher = (url: string) => axios<FetcherResponse>(url).then((res) => res.data.fact);
 
 function CatFact() {
   /**
@@ -28,7 +32,6 @@ function CatFact() {
   //       setIsLoading(false);
   //     })
 
-  const fetcher = (url: string) => axios(url).then((res) => res.data.fact);
 
   // const fetchCatFacts = (...args) =>
   //   axios(...args).then((response) => response.data);
@@ -52,16 +55,16 @@ function CatFact() {
    * You may need to change something here
    */
  
-
-  function getCatFact() {
-    const { data } = useSWR<string>("https://catfact.ninja/fact", fetchCatFacts, {
+    const { data } = useSWR("https://catfact.ninja/fact", fetcher, {
       suspense: true,
-      refreshInterval: 0
+      revalidateOnFocus: false,
+      revalidateOnMount: false,
+      revalidateOnReconnect: false,
+      refreshInterval: 0;
     });
-    return (
-      <blockquote>{data}</blockquote>
-    )
-  }
+    return <blockquote>{data}</blockquote>;
+    
+  
   
 }
 

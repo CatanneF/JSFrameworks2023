@@ -40,7 +40,7 @@ function AddressForm(props) {
           name="firstName"
           type="text"
           className="form-control"
-          value={props.firstName}
+          value={props.firstName || ""}
           onChange={e => props.setFirstName(e.target.value)}
 
         />
@@ -55,7 +55,7 @@ function AddressForm(props) {
           type="text"
           className="form-control"
           value={props.lastName}
-          onChange={e => props.setLastName(e.target.value)}
+          onChange={e => props.setLastName(e.target.value || "")}
         />
       </div>
       <div className="mb-3">
@@ -68,7 +68,7 @@ function AddressForm(props) {
           type="text"
           className="form-control"
           value={props.address}
-          onChange={e => props.setAddress(e.target.value)}
+          onChange={e => props.setAddress(e.target.value || "")}
         />
         <p className="help-block text-muted">
           Street address, P.O. box, company name, c/o
@@ -79,7 +79,12 @@ function AddressForm(props) {
         <label htmlFor="city" className="control-label">
           City / Town
         </label>
-        <input id="city" name="city" type="text" className="form-control" value={props.city}
+        <input 
+          id="city" 
+          name="city" 
+          type="text" 
+          className="form-control" 
+          value={props.city || ""}
           onChange={e => props.setCity(e.target.value)} />
       </div>
 
@@ -87,11 +92,15 @@ function AddressForm(props) {
         <label htmlFor="state" className="control-label">
           State / Province / Region
         </label>
-        <select id="state" name="state" className="form-control" value={props.state}
-          onChange={e => props.setState(e.target.value)}>
+        <select 
+          id="state" 
+          name="state" 
+          className="form-control" 
+          value={props.state}
+          onChange={e => props.setState(e.target.value || "")}>
           <option></option>
           {states.map((state, idx) => {
-            return <option key={`state-${idx}`}>{state}</option>;
+              return <option key={`state-${idx}`}>{state}</option>;
           })}
         </select>
       </div>
@@ -105,7 +114,7 @@ function AddressForm(props) {
           name="postalCode"
           type="text"
           className="form-control"
-          value={props.zip}
+          value={props.zip || ""}
           onChange={e => props.setZip(e.target.value)}
         />
       </div>
@@ -114,12 +123,16 @@ function AddressForm(props) {
         <label htmlFor="country" className="control-label">
           Country
         </label>
-        <select id="country" name="country" className="form-control" value={props.country}
+        <select 
+          id="country" 
+          name="country" 
+          className="form-control" 
+          value={props.country || ""}
           onChange={e => props.setCountry(e.target.value)}>
-          <option></option>
-          {countries.map((state, idx) => {
-            return <option key={`state-${idx}`}>{state}</option>;
-          })}
+            <option></option>
+            {countries.map((state, idx) => {
+              return <option key={`state-${idx}`}>{state}</option>;
+            })}
         </select>
       </div>
       <div className="mb-3">
